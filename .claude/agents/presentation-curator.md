@@ -52,6 +52,13 @@ After changes, verify:
 3. No duplicate slide numbers exist
 4. The `totalSlides` JS variable matches the actual count (it's auto-computed from DOM)
 5. Any `goToSlide()` calls in the TOC point to correct slide numbers
+6. Weighted slide titles in `vibe-to-agentic-framework` match actual `<h1>` titles in `presentation/index.html`
+7. Agent identifiers are consistent across examples (use `frontend-engineer` / `backend-engineer`; do not introduce aliases like `frontend-eng`)
+8. Hook references remain canonical (`15 hook events`) in presentation-facing content
+9. Do not manually insert `.weight-badge` markup in slide HTML (badges are JS-injected)
+10. Settings precedence text must separate user-writable override order from enforced policy (`managed-settings.json`)
+11. If slide 32 is touched, ensure skill frontmatter coverage includes `context: fork`
+12. Keep the framework skill identity canonical: `presentation/vibe-to-agentic-framework` (do not rename to variants)
 
 ### Step 5: Self-Evolution (after every execution)
 
@@ -74,13 +81,26 @@ Update `.claude/skills/presentation/presentation-structure/SKILL.md`:
 - **Weight Distribution table**: Update section slide ranges and total weights to match the current presentation.
 - **Section divider examples**: If section divider format changed, update the example HTML.
 
-#### 5c. Update This Agent (yourself)
+#### 5c. Cross-Doc Consistency (when claims change)
+
+If your slide edits change canonical claims that are also documented elsewhere, sync these files in the same execution:
+
+- `reports/claude-settings.md` for settings precedence and hook counts
+- `.claude/hooks/HOOKS-README.md` for hook-event totals and names
+- `reports/claude-global-vs-project-settings.md` for settings precedence language
+
+#### 5d. Update This Agent (yourself)
 
 If you encountered an edge case, discovered a new pattern, or found that the workflow needed adjustment, append a brief note to the "Learnings" section below. This helps future invocations avoid the same issues.
 
 ## Learnings
 
 _Findings from previous executions are recorded here. Add new entries as bullet points._
+
+- Hook-event references drifted across files. Treat `15 hook events` as canonical and sync all docs in the same run.
+- Do not use shorthand agent names in examples (`frontend-eng`). Keep identifiers exactly aligned with agent definitions.
+- Never hardcode `.weight-badge` in slide HTML; badges are runtime-injected.
+- Keep the framework skill name stable as `vibe-to-agentic-framework` to avoid broken skill references.
 
 ## Critical Requirements
 

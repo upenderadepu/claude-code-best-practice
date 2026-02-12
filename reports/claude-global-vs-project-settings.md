@@ -67,17 +67,19 @@ These exist at both levels, with **project-level taking precedence** over global
 
 ## Settings Precedence
 
-Settings apply in order from highest to lowest priority:
+User-writable settings apply in this override order (highest to lowest):
 
 | Priority | Location | Scope | Version Control | Purpose |
 |----------|----------|-------|-----------------|---------|
-| 1 | Managed settings | System | Read-only | Organization/admin policies |
+| 1 | Command line flags | Session | N/A | Single-session overrides |
 | 2 | `.claude/settings.local.json` | Project | No (git-ignored) | Personal project-specific |
 | 3 | `.claude/settings.json` | Project | Yes (committed) | Team-shared settings |
 | 4 | `~/.claude/settings.local.json` | User | N/A | Personal global overrides |
 | 5 | `~/.claude/settings.json` | User | N/A | Global personal settings |
 
-**Important**: `deny` rules have the highest priority and cannot be overridden by any lower-priority settings.
+Policy layer: `managed-settings.json` is organization-enforced and cannot be overridden by local files.
+
+**Important**: `deny` rules have the highest safety precedence and cannot be overridden by lower-priority allow/ask rules.
 
 ---
 

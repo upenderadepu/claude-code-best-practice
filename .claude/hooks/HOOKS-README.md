@@ -1,17 +1,23 @@
 # HOOKS-README
 contains all the details, scripts, and instructions for the hooks
 
-## Hook Events Overview - [Official 9 Hooks](https://docs.claude.com/en/docs/claude-code/hooks-guide)
+## Hook Events Overview - [Official 15 Hooks](https://docs.claude.com/en/docs/claude-code/hooks-guide)
 Claude Code provides several hook events that run at different points in the workflow:
-1. PreToolUse: Runs before tool calls (can block them)
-2. PostToolUse: Runs after tool calls complete
-3. UserPromptSubmit: Runs when the user submits a prompt, before Claude processes it
-4. Notification: Runs when Claude Code sends notifications
-5. Stop: Runs when Claude Code finishes responding
-6. SubagentStop: Runs when subagent tasks complete
-7. PreCompact: Runs before Claude Code is about to run a compact operation
-8. SessionStart: Runs when Claude Code starts a new session or resumes an existing session
-9. SessionEnd: Runs when Claude Code session ends
+1. SessionStart: Runs when Claude Code starts a new session or resumes one
+2. SessionEnd: Runs when a Claude Code session ends
+3. UserPromptSubmit: Runs when the user submits a prompt
+4. PreToolUse: Runs before tool calls (can block them)
+5. PostToolUse: Runs after tool calls complete
+6. PostToolUseFailure: Runs after tool calls fail
+7. PermissionRequest: Runs when Claude asks for a permission decision
+8. Notification: Runs when Claude Code sends notifications
+9. Stop: Runs when Claude Code finishes responding
+10. SubagentStart: Runs when a subagent task begins
+11. SubagentStop: Runs when a subagent task completes
+12. PreCompact: Runs before Claude runs context compaction
+13. Setup: Runs during setup/maintenance workflows
+14. TeammateIdle: Runs when an Agent Team teammate goes idle
+15. TaskCompleted: Runs when a tracked task reaches completion
 
 ## Prerequisites
 
@@ -62,15 +68,22 @@ Edit `.claude/hooks/config/hooks-config.json` for team-wide defaults:
 
 ```json
 {
+  "disableSessionStartHook": false,
+  "disableSessionEndHook": false,
+  "disableUserPromptSubmitHook": false,
   "disablePreToolUseHook": false,
   "disablePostToolUseHook": false,
-  "disableUserPromptSubmitHook": false,
+  "disablePostToolUseFailureHook": false,
+  "disablePermissionRequestHook": false,
   "disableNotificationHook": false,
+  "disableSubagentStartHook": false,
   "disableStopHook": false,
   "disableSubagentStopHook": false,
   "disablePreCompactHook": false,
-  "disableSessionStartHook": false,
-  "disableSessionEndHook": false
+  "disableSetupHook": false,
+  "disableTeammateIdleHook": false,
+  "disableTaskCompletedHook": false,
+  "disableLogging": true
 }
 ```
 
@@ -87,7 +100,7 @@ Create or edit `.claude/hooks/config/hooks-config.local.json` for personal prefe
 
 In this example, only the PostToolUse and SessionStart hooks are overridden locally. All other hooks will use the shared configuration values.
 
-**Note:** Individual hook toggles are checked by the hook script (`.claude/hooks/scripts/hooks.py`). Local settings override shared settings, and if a hook is disabled, the script exits silently without playing any sounds or executing hook logic.
+**Note:** Individual hook toggles are checked by the hook script (`.claude/hooks/scripts/hooks.py`). Local settings override shared settings, and if a hook is disabled, the script exits silently without playing sounds or executing hook logic.
 
 ### Text to Speech (TTS)
 website used to generate sounds: https://elevenlabs.io/

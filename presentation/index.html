@@ -763,8 +763,9 @@ When creating or modifying frontend components:
             <div class="use-case-item"><span class="use-case-icon">&#128221;</span><div class="use-case-text"><strong>description</strong><span>When to invoke &mdash; helps Claude auto-discover the skill</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#129302;</span><div class="use-case-text"><strong>model</strong><span>Override which model runs the skill</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128295;</span><div class="use-case-text"><strong>allowed-tools</strong><span>Restrict which tools the skill can use</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">&#128257;</span><div class="use-case-text"><strong>context: fork</strong><span>Run the skill in an isolated subagent context for complex workflows</span></div></div>
         </div>
-        <h3>Three Ways to Invoke</h3>
+        <h3>Invocation &amp; Execution Modes</h3>
         <div class="code-block"><span class="comment"># 1. Manual: slash command</span>
 <span class="cmd">&gt;</span> /frontend-conventions
 
@@ -773,7 +774,10 @@ When creating or modifying frontend components:
 
 <span class="comment"># 3. Preloaded: in an agent's frontmatter</span>
 <span class="key">skills</span>:
-  - frontend-conventions</div>
+  - frontend-conventions
+
+<span class="comment"># 4. Optional isolation for heavy workflows</span>
+<span class="key">context</span>: <span class="string">fork</span></div>
     </div>
 
     <!-- Slide 33: Skills Summary -->
@@ -826,13 +830,13 @@ When creating or modifying frontend components:
             <div class="col-card">
                 <h4>As Main Agent</h4>
                 <p>Replaces default Claude for your conversation.</p>
-                <div class="code-block"><span class="cmd">$</span> claude --agent frontend-eng</div>
+                <div class="code-block"><span class="cmd">$</span> claude --agent frontend-engineer</div>
             </div>
             <div class="col-card">
                 <h4>As Subagent</h4>
                 <p>Spawned in an isolated context via Task tool.</p>
                 <div class="code-block">Task(
-  subagent_type=<span class="string">"frontend-eng"</span>
+  subagent_type=<span class="string">"frontend-engineer"</span>
   prompt=<span class="string">"Add a settings page"</span>
 )</div>
             </div>
@@ -1447,12 +1451,15 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
             <h4>Settings Hierarchy</h4>
             <p>Settings cascade from most specific to least specific. Higher priority wins.</p>
         </div>
-        <div class="code-block"><span class="comment"># Priority order (highest to lowest):</span>
+        <div class="code-block"><span class="comment"># User-writable override order (highest to lowest):</span>
 1. Command line flags              <span class="comment"># --model opus</span>
 2. .claude/settings.local.json     <span class="comment"># Personal, git-ignored</span>
 3. .claude/settings.json           <span class="comment"># Team-shared, committed</span>
-4. ~/.claude/settings.json         <span class="comment"># Global personal</span>
-5. managed-settings.json           <span class="comment"># Organization policies</span></div>
+4. ~/.claude/settings.local.json   <span class="comment"># Global personal override</span>
+5. ~/.claude/settings.json         <span class="comment"># Global personal default</span>
+
+<span class="comment"># Policy layer:</span>
+managed-settings.json              <span class="comment"># Organization policy (enforced)</span></div>
     </div>
 
     <!-- Slide 66: Spinner Verbs -->

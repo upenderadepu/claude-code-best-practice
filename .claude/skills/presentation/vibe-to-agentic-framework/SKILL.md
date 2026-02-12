@@ -23,9 +23,12 @@ Every technique is demonstrated on a realistic full-stack project:
 todoapp/
 ├── backend/          # FastAPI (Python)
 │   ├── main.py       # App entry + CORS
-│   ├── models.py     # SQLAlchemy models
 │   ├── routes/
 │   │   └── todos.py  # CRUD endpoints
+│   │   └── users.py  # Auth endpoints
+│   ├── models/
+│   │   ├── todo.py   # SQLAlchemy Todo model
+│   │   └── user.py   # SQLAlchemy User model
 │   └── tests/
 │       └── test_todos.py
 ├── frontend/         # Next.js (TypeScript)
@@ -33,7 +36,10 @@ todoapp/
 │   │   ├── TodoList.tsx
 │   │   └── Sidebar.tsx
 │   ├── pages/
-│   └── styles/       # Tailwind tokens
+│   │   ├── index.tsx
+│   │   └── todos.tsx
+│   └── lib/
+│       └── api.ts    # API client
 └── CLAUDE.md
 ```
 

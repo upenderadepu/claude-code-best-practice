@@ -56,7 +56,7 @@ Inside `.code-block`, use these spans for syntax coloring:
 ### Content Slide with Two Columns (Good vs Bad)
 ```html
 <div class="slide" data-slide="N" data-weight="5">
-    <h1>Title <span class="weight-badge">+5%</span></h1>
+    <h1>Title</h1>
     <div class="two-col">
         <div class="col-card bad">
             <h4>Before (Vibe Coding)</h4>
@@ -69,6 +69,8 @@ Inside `.code-block`, use these spans for syntax coloring:
     </div>
 </div>
 ```
+
+Do not hardcode `<span class="weight-badge">` in slide HTML. The presentation JavaScript injects and removes weight badges automatically.
 
 ### Content Slide with Code Example
 ```html

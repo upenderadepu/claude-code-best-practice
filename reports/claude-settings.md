@@ -28,19 +28,21 @@ A comprehensive guide to all available configuration options in Claude Code's `s
 
 ## Settings Hierarchy
 
-Claude Code uses a 4-tier configuration hierarchy (highest to lowest priority):
+Claude Code settings use a 5-level user-writable override chain plus an enforced policy layer:
 
 | Priority | Location | Scope | Version Control | Purpose |
 |----------|----------|-------|-----------------|---------|
 | 1 | Command line arguments | Session | N/A | Single-session overrides |
 | 2 | `.claude/settings.local.json` | Project | No (git-ignored) | Personal project-specific |
 | 3 | `.claude/settings.json` | Project | Yes (committed) | Team-shared settings |
-| 4 | `~/.claude/settings.json` | User | N/A | Global personal settings |
-| 5 | `managed-settings.json` | System | Read-only | Organization policies |
+| 4 | `~/.claude/settings.local.json` | User | N/A | Personal global overrides |
+| 5 | `~/.claude/settings.json` | User | N/A | Global personal defaults |
 
-**Important**: Later values override earlier ones EXCEPT for:
-- `deny` rules (highest priority - cannot be overridden)
-- Managed settings (cannot be overridden by any local settings)
+**Policy layer**: `managed-settings.json` is organization-enforced and cannot be overridden by local settings.
+
+**Important**:
+- `deny` rules have highest safety precedence and cannot be overridden by lower-priority allow/ask rules.
+- Managed settings may lock or override local behavior even if local files specify different values.
 
 ---
 
@@ -237,7 +239,7 @@ Control what tools and operations Claude can perform.
 
 Execute custom shell commands at various points in Claude Code's lifecycle.
 
-### Hook Events (13 total)
+### Hook Events (15 total)
 
 | Event | When Fired | Matcher Support | Common Use Cases |
 |-------|------------|-----------------|------------------|
@@ -254,6 +256,8 @@ Execute custom shell commands at various points in Claude Code's lifecycle.
 | `SubagentStop` | Subagent completes | Yes | Cleanup, validation |
 | `PreCompact` | Before context compaction | Yes | Backup, logging |
 | `Setup` | Repository init (`--init`, `--maintenance`) | Yes | One-time setup |
+| `TeammateIdle` | Agent Teams teammate goes idle | Yes | Team orchestration, routing |
+| `TaskCompleted` | A tracked task is completed | Yes | Progress automation, notifications |
 
 ### Hook Configuration Structure
 
