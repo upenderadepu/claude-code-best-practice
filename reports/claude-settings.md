@@ -649,7 +649,7 @@ Set environment variables for all Claude Code sessions.
 | `MAX_MCP_OUTPUT_TOKENS` | Max MCP output tokens (default: 50000) |
 | `BASH_MAX_TIMEOUT_MS` | Bash command timeout |
 | `BASH_MAX_OUTPUT_LENGTH` | Max bash output length |
-| `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | Auto-compact threshold percentage |
+| `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | Auto-compact threshold percentage (1-100). Default is ~95%. Set lower (e.g., `50`) to trigger compaction earlier. Values above 95% have no effect. Use `/context` to monitor current usage. Example: `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=50 claude` |
 | `CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR` | Keep cwd between bash calls (`1` to enable) |
 | `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` | Disable background tasks (`1` to disable) |
 | `ENABLE_TOOL_SEARCH` | MCP tool search threshold (e.g., `auto:5`) |
