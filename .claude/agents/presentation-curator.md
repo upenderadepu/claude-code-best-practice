@@ -101,6 +101,7 @@ _Findings from previous executions are recorded here. Add new entries as bullet 
 - Do not use shorthand agent names in examples (`frontend-eng`). Keep identifiers exactly aligned with agent definitions.
 - Never hardcode `.weight-badge` in slide HTML; badges are runtime-injected.
 - Keep the framework skill name stable as `vibe-to-agentic-framework` to avoid broken skill references.
+- When updating slide 2 (TodoApp structure) to show before/after comparison, the `.two-col` layout works well with centered h3 headers using inline styles for red/green color coding. Update framework skill's Part 0 description and TodoApp example section to reflect the new before/after structure.
 
 ## Critical Requirements
 

@@ -17,30 +17,39 @@ The journey between these two extremes is **incremental and cumulative**. Each b
 
 ## The Running Example: TodoApp Monorepo
 
-Every technique is demonstrated on a realistic full-stack project:
+Every technique is demonstrated on a realistic full-stack project. The presentation shows the transformation from a plain project (vibe coding) to one with full Claude Code configuration (agentic engineering):
 
+**Before (Vibe Coding):**
 ```
 todoapp/
 ├── backend/          # FastAPI (Python)
-│   ├── main.py       # App entry + CORS
+│   ├── main.py
 │   ├── routes/
-│   │   └── todos.py  # CRUD endpoints
-│   │   └── users.py  # Auth endpoints
 │   ├── models/
-│   │   ├── todo.py   # SQLAlchemy Todo model
-│   │   └── user.py   # SQLAlchemy User model
 │   └── tests/
-│       └── test_todos.py
-├── frontend/         # Next.js (TypeScript)
-│   ├── components/
-│   │   ├── TodoList.tsx
-│   │   └── Sidebar.tsx
-│   ├── pages/
-│   │   ├── index.tsx
-│   │   └── todos.tsx
-│   └── lib/
-│       └── api.ts    # API client
-└── CLAUDE.md
+└── frontend/         # Next.js (TypeScript)
+    ├── components/
+    ├── pages/
+    └── lib/
+```
+
+**After (Agentic Engineering):**
+```
+todoapp/
+├── .claude/                  # Claude Code config
+│   ├── agents/               # Custom subagents
+│   ├── skills/               # Domain knowledge
+│   ├── commands/             # Slash commands
+│   ├── hooks/                # Lifecycle scripts
+│   ├── rules/                # Modular instructions
+│   ├── settings.json         # Team settings
+│   └── settings.local.json   # Personal settings
+├── backend/
+│   └── CLAUDE.md             # Backend instructions
+├── frontend/
+│   └── CLAUDE.md             # Frontend instructions
+├── .mcp.json                 # Managed MCP servers
+└── CLAUDE.md                 # Project instructions
 ```
 
 **Why TodoApp?** It's small enough to fit on slides but complex enough to demonstrate real problems: a backend with route patterns and test conventions, a frontend with component hierarchy and design tokens, and a monorepo structure where cross-cutting concerns (like adding a new feature) require coordination between both sides.
@@ -54,7 +63,7 @@ The presentation follows a deliberate pedagogical sequence. Each section unlocks
 ### Part 0: Introduction (Slides 1–4, no weight)
 **Purpose:** Set the stage. Introduce the TodoApp, define vibe coding, and show the destination.
 - Title slide establishes the journey metaphor
-- Example Project introduces the codebase all examples will reference
+- Example Project shows the transformation: before/after comparison of TodoApp — plain project structure vs one with full Claude Code configuration (.claude/, CLAUDE.md, .mcp.json, etc.)
 - "What is Vibe Coding?" creates the 0% baseline — the pain point
 - Journey Map provides a clickable TOC showing the full path ahead
 

@@ -1,6 +1,6 @@
 # Claude Code Settings Reference
 
-A comprehensive guide to all available configuration options in Claude Code's `settings.json` files. As of February 2026, Claude Code exposes **37 settings** and **84 environment variables** (use the `"env"` field in `settings.json` to avoid wrapper scripts).
+A comprehensive guide to all available configuration options in Claude Code's `settings.json` files. As of February 2026, Claude Code exposes **38 settings** and **84 environment variables** (use the `"env"` field in `settings.json` to avoid wrapper scripts).
 
 <table width="100%">
 <tr>
@@ -479,8 +479,8 @@ Configure Claude Code plugins and marketplaces.
 | Alias | Description |
 |-------|-------------|
 | `"default"` | Recommended for your account type |
-| `"sonnet"` | Latest Sonnet model (Claude 4.5) |
-| `"opus"` | Latest Opus model (Claude 4.6) |
+| `"sonnet"` | Latest Sonnet model (Claude Sonnet 4.6) |
+| `"opus"` | Latest Opus model (Claude Opus 4.6) |
 | `"haiku"` | Fast Haiku model |
 | `"sonnet[1m]"` | Sonnet with 1M token context |
 | `"opusplan"` | Opus for planning, Sonnet for execution |
@@ -539,6 +539,7 @@ Configure via `env` key:
 | `outputStyle` | string | `"default"` | Output style (e.g., `"Explanatory"`) |
 | `spinnerTipsEnabled` | boolean | `true` | Show tips while waiting |
 | `spinnerVerbs` | object | - | Custom spinner verbs with `mode` ("append" or "replace") and `verbs` array |
+| `spinnerTipsOverride` | object | - | Custom spinner tips with `tips` (string array) and optional `excludeDefault` (boolean) |
 | `terminalProgressBarEnabled` | boolean | `true` | Show progress bar in terminal |
 | `showTurnDuration` | boolean | `true` | Show turn duration messages |
 | `respectGitignore` | boolean | `true` | Respect .gitignore in file picker |
@@ -574,10 +575,14 @@ Configure via `env` key:
     "type": "command",
     "command": "git branch --show-current 2>/dev/null || echo 'no-branch'"
   },
-  "spinnerTipsEnabled": false,
+  "spinnerTipsEnabled": true,
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": ["Cooking", "Brewing", "Crafting", "Conjuring"]
+  },
+  "spinnerTipsOverride": {
+    "tips": ["Use /compact at ~50% context", "Start with plan mode for complex tasks"],
+    "excludeDefault": true
   },
   "terminalProgressBarEnabled": true,
   "showTurnDuration": false
@@ -737,6 +742,10 @@ Set environment variables for all Claude Code sessions.
   },
 
   "spinnerTipsEnabled": true,
+  "spinnerTipsOverride": {
+    "tips": ["Custom tip 1", "Custom tip 2"],
+    "excludeDefault": false
+  },
   "showTurnDuration": false,
 
   "env": {
