@@ -19,12 +19,16 @@ The agent has skills preloaded via the `skills` field, providing domain knowledg
 
 ### Skill Definition Structure
 Skills in `.claude/skills/<name>/SKILL.md` use YAML frontmatter:
-- `name`: Skill identifier (optional, uses directory name if omitted)
+- `name`: Display name and `/slash-command` (defaults to directory name)
 - `description`: When to invoke (recommended for auto-discovery)
-- `model`: Model to use when skill is active
+- `argument-hint`: Autocomplete hint (e.g., `[issue-number]`)
 - `disable-model-invocation`: Set `true` to prevent automatic invocation
+- `user-invocable`: Set `false` to hide from `/` menu (background knowledge only)
+- `allowed-tools`: Tools allowed without permission prompts when skill is active
+- `model`: Model to use when skill is active
 - `context`: Set to `fork` to run in isolated subagent context
-- `allowed-tools`: Restrict which tools Claude can use
+- `agent`: Subagent type for `context: fork` (default: `general-purpose`)
+- `hooks`: Lifecycle hooks scoped to this skill
 
 ### Presentation System
 Any request to update, modify, or fix the presentation (`presentation/index.html`) must be handled by the `presentation-curator` agent (`.claude/agents/presentation-curator.md`). Always delegate presentation work to this agent via the Task tool — never edit the presentation directly.
@@ -41,7 +45,7 @@ Cross-platform sound notification system in `.claude/hooks/`:
 - `config/hooks-config.local.json`: Personal overrides (git-ignored)
 - `sounds/`: Audio files organized by hook event (generated via ElevenLabs TTS)
 
-Hook events configured in `.claude/settings.json`: PreToolUse, PostToolUse, UserPromptSubmit, Notification, Stop, SubagentStart, SubagentStop, PreCompact, SessionStart, SessionEnd, Setup, PermissionRequest.
+Hook events configured in `.claude/settings.json`: PreToolUse, PostToolUse, UserPromptSubmit, Notification, Stop, SubagentStart, SubagentStop, PreCompact, SessionStart, SessionEnd, Setup, PermissionRequest, TeammateIdle, TaskCompleted, ConfigChange.
 
 Special handling: git commits trigger `pretooluse-git-committing` sound.
 
@@ -59,11 +63,18 @@ Be explicit about tool usage in subagent definitions. Avoid vague terms like "la
 Subagents in `.claude/agents/*.md` use YAML frontmatter:
 - `name`: Subagent identifier
 - `description`: When to invoke (use "PROACTIVELY" for auto-invocation)
-- `tools`: Comma-separated list of allowed tools
-- `model`: Typically "haiku" for efficiency
-- `color`: CLI output color for visual distinction
+- `tools`: Comma-separated allowlist of tools (inherits all if omitted). Supports `Task(agent_type)` syntax
+- `disallowedTools`: Tools to deny, removed from inherited or specified list
+- `model`: Model alias: `haiku`, `sonnet`, `opus`, or `inherit` (default: `inherit`)
+- `permissionMode`: Permission mode (e.g., `"acceptEdits"`, `"plan"`, `"bypassPermissions"`)
+- `maxTurns`: Maximum agentic turns before the subagent stops
 - `skills`: List of skill names to preload into agent context
+- `mcpServers`: MCP servers for this subagent (server names or inline configs)
+- `hooks`: Lifecycle hooks scoped to this subagent (`PreToolUse`, `PostToolUse`, `Stop`)
 - `memory`: Persistent memory scope — `user`, `project`, or `local` (see `reports/claude-agent-memory.md`)
+- `background`: Set to `true` to always run as a background task
+- `isolation`: Set to `"worktree"` to run in a temporary git worktree
+- `color`: CLI output color for visual distinction
 
 ### Configuration Hierarchy
 1. `.claude/settings.local.json`: Personal settings (git-ignored)

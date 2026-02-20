@@ -1,7 +1,7 @@
 # HOOKS-README
 contains all the details, scripts, and instructions for the hooks
 
-## Hook Events Overview - [Official 15 Hooks](https://docs.claude.com/en/docs/claude-code/hooks-guide)
+## Hook Events Overview - [Official 16 Hooks](https://docs.claude.com/en/docs/claude-code/hooks-guide)
 Claude Code provides several hook events that run at different points in the workflow:
 1. SessionStart: Runs when Claude Code starts a new session or resumes one
 2. SessionEnd: Runs when a Claude Code session ends
@@ -18,6 +18,7 @@ Claude Code provides several hook events that run at different points in the wor
 13. Setup: Runs during setup/maintenance workflows
 14. TeammateIdle: Runs when an Agent Team teammate goes idle
 15. TaskCompleted: Runs when a tracked task reaches completion
+16. ConfigChange: Fires when configuration files change during a session, for enterprise security auditing
 
 ## Prerequisites
 
@@ -83,6 +84,7 @@ Edit `.claude/hooks/config/hooks-config.json` for team-wide defaults:
   "disableSetupHook": false,
   "disableTeammateIdleHook": false,
   "disableTaskCompletedHook": false,
+  "disableConfigChangeHook": false,
   "disableLogging": true
 }
 ```

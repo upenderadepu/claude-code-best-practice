@@ -138,14 +138,14 @@ See [weather-orchestration-architecture](weather-orchestration/weather-orchestra
 | `/compact` | `/context` | `/model` | `/plan` | `/config` |
 | `/clear` | `/cost` | `/memory` | `/doctor` | `/rewind` |
 
-[**See Complete List →**](reports/claude-commands.md)
+[**See Complete List →**](reports/live/agent-command-skills/claude-commands.md)
 
 
 ## CLAUDE SETTINGS
 
 | | |
 |---|---|
-| [**Claude Settings**](reports/claude-settings.md) | [**Global vs Project Settings**](reports/claude-global-vs-project-settings.md) |
+| [**Claude Settings**](reports/live/claude-settings.md) | [**Global vs Project Settings**](reports/claude-global-vs-project-settings.md) |
 
 
 ## MCP SERVERS FOR DAILY USE
@@ -164,15 +164,27 @@ Research (Context7/DeepWiki) -> Debug (Playwright/Chrome) -> Document (Excalidra
 
 ## REPORTS
 
+### Live Reports
+> Reports that are frequently updated as Claude Code evolves.
+
+| Report | Description |
+|--------|-------------|
+| [Claude Code Commands Reference](reports/live/agent-command-skills/claude-commands.md) | Complete reference of all slash commands, keyboard shortcuts, and input modes |
+| [Claude Code Settings Reference](reports/live/claude-settings.md) | Comprehensive guide to all `settings.json` configuration options |
+| [Agents Frontmatter Reference](reports/live/agent-command-skills/claude-agents-frontmatter.md) | Complete reference of all agent (`.claude/agents/`) frontmatter fields |
+| [Commands Frontmatter Reference](reports/live/agent-command-skills/claude-commands-frontmatter.md) | Complete reference of all command (`.claude/commands/`) frontmatter fields |
+| [Skills Frontmatter Reference](reports/live/agent-command-skills/claude-skills-frontmatter.md) | Complete reference of all skill (`.claude/skills/`) frontmatter fields |
+
+### Reports
+
 | Report | Description |
 |--------|-------------|
 | [Agent SDK vs CLI System Prompts](reports/claude-agent-sdk-vs-cli-system-prompts.md) | Why Claude CLI and Agent SDK outputs may differ—system prompt architecture and determinism |
 | [Browser Automation MCP Comparison](reports/claude-in-chrome-v-chrome-devtools-mcp.md) | Comparison of Playwright, Chrome DevTools, and Claude in Chrome for automated testing |
 | [Claude Code CLI Startup Flags](reports/claude-cli-startup-flags.md) | Complete reference of all CLI flags, subcommands, and environment variables |
-| [Claude Code Commands Reference](reports/claude-commands.md) | Complete reference of all slash commands, keyboard shortcuts, and input modes |
-| [Claude Code Settings Reference](reports/claude-settings.md) | Comprehensive guide to all `settings.json` configuration options |
 | [CLAUDE.md Loading in Monorepos](reports/claude-md-for-larger-mono-repos.md) | Understanding ancestor vs descendant loading behavior for CLAUDE.md files |
 | [Global vs Project Settings](reports/claude-global-vs-project-settings.md) | Which features are global-only (`~/.claude/`) vs dual-scope, including Tasks and Agent Teams |
 | [Skills Discovery in Monorepos](reports/claude-skills-for-larger-mono-repos.md) | How skills are discovered and loaded in large monorepo projects |
 | [Agent Memory Frontmatter](reports/claude-agent-memory.md) | Persistent memory scopes (`user`, `project`, `local`) for subagents — enabling agents to learn across sessions |
 | [Boris Cherny's 12 Customization Tips](reports/claude-boris-tips-feb-26.md) | 12 ways to customize Claude Code — from terminal config to plugins, agents, hooks, and output styles |
+| [Advanced Tool Use Patterns](reports/claude-advanced-tool-use.md) | Programmatic Tool Calling (PTC), Tool Search, and Tool Use Examples |

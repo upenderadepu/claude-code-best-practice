@@ -196,7 +196,7 @@ Control what tools and operations Claude can perform.
 
 | Tool | Syntax | Examples |
 |------|--------|----------|
-| `Bash` | `Bash(command pattern)` | `Bash(npm run *)`, `Bash(git commit *)` |
+| `Bash` | `Bash(command pattern)` | `Bash(npm run *)`, `Bash(* install)`, `Bash(git * main)` |
 | `Read` | `Read(path pattern)` | `Read(.env)`, `Read(./secrets/**)` |
 | `Edit` | `Edit(path pattern)` | `Edit(src/**)`, `Edit(*.ts)` |
 | `Write` | `Write(path pattern)` | `Write(*.md)`, `Write(./docs/**)` |
@@ -206,6 +206,11 @@ Control what tools and operations Claude can perform.
 | `Task` | `Task(agent-name)` | `Task(Explore)`, `Task(my-agent)` |
 | `Skill` | `Skill(skill-name)` | `Skill(weather-fetcher)` |
 | `MCP` | `mcp__server__tool` | `mcp__memory__*`, `mcp__github__*` |
+
+**Bash wildcard notes:**
+- `*` can appear at **any position**: prefix (`Bash(* install)`), suffix (`Bash(npm *)`), or middle (`Bash(git * main)`)
+- `Bash(*)` is treated as equivalent to `Bash` (matches all bash commands)
+- Permission rules support output redirections: `Bash(python:*)` matches `python script.py > output.txt`
 
 **Example:**
 ```json
@@ -239,7 +244,7 @@ Control what tools and operations Claude can perform.
 
 Execute custom shell commands at various points in Claude Code's lifecycle.
 
-### Hook Events (15 total)
+### Hook Events (16 total)
 
 | Event | When Fired | Matcher Support | Common Use Cases |
 |-------|------------|-----------------|------------------|
@@ -255,9 +260,10 @@ Execute custom shell commands at various points in Claude Code's lifecycle.
 | `SubagentStart` | Subagent spawned | Yes | Per-agent setup |
 | `SubagentStop` | Subagent completes | Yes | Cleanup, validation |
 | `PreCompact` | Before context compaction | Yes | Backup, logging |
-| `Setup` | Repository init (`--init`, `--maintenance`) | Yes | One-time setup |
+| `Setup` | Repository init (`--init`, `--init-only`, `--maintenance`) | Yes | One-time setup |
 | `TeammateIdle` | Agent Teams teammate goes idle | Yes | Team orchestration, routing |
 | `TaskCompleted` | A tracked task is completed | Yes | Progress automation, notifications |
+| `ConfigChange` | Configuration files change during session | Yes | Enterprise security auditing, blocking settings changes |
 
 ### Hook Configuration Structure
 
@@ -293,6 +299,7 @@ Execute custom shell commands at various points in Claude Code's lifecycle.
 | `prompt` | string | LLM prompt for evaluation (for `type: "prompt"`) |
 | `timeout` | number | Timeout in milliseconds |
 | `once` | boolean | Run only once per session |
+| `model` | string | Custom model for prompt-based stop hooks (for `type: "prompt"`) |
 
 ### Hook Matcher Patterns
 
@@ -320,6 +327,22 @@ Execute custom shell commands at various points in Claude Code's lifecycle.
 | `CLAUDE_TOOL_NAME` | Current tool name |
 | `CLAUDE_TOOL_INPUT` | Tool input (JSON) |
 | `CLAUDE_TOOL_OUTPUT` | Tool output (PostToolUse only) |
+
+**PreToolUse/PostToolUse Input Fields:**
+
+| Field | Description |
+|-------|-------------|
+| `tool_use_id` | Unique identifier for this specific tool invocation |
+
+**Stop/SubagentStop Input Fields:**
+
+The `Stop` and `SubagentStop` hooks receive additional fields in their JSON input:
+
+| Field | Description |
+|-------|-------------|
+| `last_assistant_message` | The final assistant response text (avoids parsing transcript files) |
+| `agent_id` | Agent identifier (SubagentStop only) |
+| `agent_transcript_path` | Path to agent's transcript file (SubagentStop only) |
 
 **Example:**
 ```json
@@ -556,6 +579,18 @@ Configure via `env` key:
 }
 ```
 
+**Status Line Input Fields:**
+
+The status line command receives a JSON object on stdin with these notable fields:
+
+| Field | Description |
+|-------|-------------|
+| `workspace.added_dirs` | Directories added via `/add-dir` |
+| `context_window.used_percentage` | Context window usage percentage |
+| `context_window.remaining_percentage` | Context window remaining percentage |
+| `current_usage` | Current context window token count |
+| `exceeds_200k_tokens` | Whether context exceeds 200k tokens |
+
 ### File Suggestion Configuration
 
 ```json
@@ -662,6 +697,11 @@ Set environment variables for all Claude Code sessions.
 | `DISABLE_PROMPT_CACHING_HAIKU` | Disable Haiku prompt caching |
 | `DISABLE_PROMPT_CACHING_SONNET` | Disable Sonnet prompt caching |
 | `DISABLE_PROMPT_CACHING_OPUS` | Disable Opus prompt caching |
+| `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` | Disable experimental beta features (`1` to disable) |
+| `CLAUDE_CODE_SHELL` | Override automatic shell detection |
+| `CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS` | Override default file read token limit |
+| `CLAUDE_CODE_ENABLE_TASKS` | Set to `false` to disable new task system |
+| `CLAUDE_CODE_EXIT_AFTER_STOP_DELAY` | Auto-exit SDK mode after idle duration (ms) |
 
 ---
 
@@ -676,6 +716,9 @@ Set environment variables for all Claude Code sessions.
 | `/mcp` | Manage MCP servers |
 | `/hooks` | View configured hooks |
 | `/plugin` | Manage plugins |
+| `/keybindings` | Configure custom keyboard shortcuts |
+| `/skills` | View and manage skills |
+| `/permissions` | View and manage permission rules |
 | `--doctor` | Diagnose configuration issues |
 | `--debug` | Debug mode with hook execution details |
 

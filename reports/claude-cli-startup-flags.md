@@ -118,6 +118,7 @@ A comprehensive reference of all available command-line flags when launching Cla
 | Flag | Short | Description |
 |------|-------|-------------|
 | `--add-dir <PATH>` | | Add additional working directories for Claude to access |
+| `--worktree` | `-w` | Start Claude in an isolated git worktree (branched from HEAD) |
 
 ---
 
@@ -206,6 +207,12 @@ These environment variables modify Claude Code behavior at startup:
 | `MAX_THINKING_TOKENS` | Limit thinking token budget (set to `0` to disable) |
 | `CLAUDE_CODE_EFFORT_LEVEL` | Control thinking depth: `low`, `medium`, `high` |
 | `USE_BUILTIN_RIPGREP=0` | Use system ripgrep instead of built-in (Alpine Linux) |
+| `CLAUDE_CODE_ENABLE_TASKS=false` | Disable new task management system, revert to old todos |
+| `CLAUDE_CODE_SHELL` | Override automatic shell detection |
+| `CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS` | Override default file read token limit |
+| `CLAUDE_CODE_EXIT_AFTER_STOP_DELAY` | Auto-exit SDK mode after idle duration (ms) |
+| `CLAUDE_CODE_SIMPLE` | Enable simple mode (Bash + Edit tools only) |
+| `CLAUDE_BASH_NO_LOGIN=1` | Skip login shell for BashTool |
 
 ---
 
