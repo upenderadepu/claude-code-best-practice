@@ -29,7 +29,7 @@ practice makes claude perfect
 - **[MCP Servers](https://code.claude.com/docs/en/mcp)** - Model Context Protocol connections to external tools, databases, and APIs
 - **[Plugins](https://code.claude.com/docs/en/plugins)** - Distributable packages that bundle skills, subagents, hooks, and MCP servers
 - **[Marketplaces](https://code.claude.com/docs/en/discover-plugins)** - Host and discover plugin collections
-- **[Sandbox](https://code.claude.com/docs/en/sandbox)** - File and network isolation runtime that improves safety while reducing permission prompts
+- **[Sandboxing](https://code.claude.com/docs/en/sandboxing)** - File and network isolation runtime that improves safety while reducing permission prompts
 - **[Output Styles](https://code.claude.com/docs/en/output-styles)** - Configurable response tone and format — Explanatory, Learning, or Custom
 - **[Settings](https://code.claude.com/docs/en/settings)** - Hierarchical configuration system for Claude Code behavior (37 settings, 84 env vars)
 - **[Permissions](https://code.claude.com/docs/en/iam)** - Fine-grained access control for tools and operations with wildcard syntax
