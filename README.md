@@ -5,7 +5,7 @@ practice makes claude perfect
 
 ![Best Practice](!/tags/best-practice.svg) *Click on this badge to show the latest best practice*<br>
 ![Implemented](!/tags/implemented.svg) *Click on this badge to show implementation in this repo*<br>
-[![Orchestration Workflow](!/tags/orchestration-workflow.svg)](https://github.com/shanraisshan/claude-code-best-practice#orchestration-workflow) *Click on this badge to see the Command → Agent → Skills orchestration workflow*
+![Orchestration Workflow](!/tags/orchestration-workflow.svg) *Click on this badge to see the Command → Agent → Skills orchestration workflow*
 
 <p align="center">
   <img src="!/claude-jumping.svg" alt="Claude Code mascot jumping" width="120" height="100">
@@ -130,7 +130,7 @@ Multi-step workflows using the **Command → Agent → Skills** architecture pat
 
 **Why it works:** Progressive disclosure • Single execution context • Clean separation • Reusability
 
-See [weather-orchestration-architecture](weather-orchestration/weather-orchestration-architecture.md) for implementation details.
+See [orchestration-workflow](orchestration-workflow/orchestration-workflow.md) for implementation details.
 
 ## AI TERMS
 

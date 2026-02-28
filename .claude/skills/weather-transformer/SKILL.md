@@ -1,6 +1,6 @@
 ---
 name: weather-transformer
-description: Instructions for applying mathematical transformations to temperature data based on rules in weather-orchestration/input.md
+description: Instructions for applying mathematical transformations to temperature data based on rules in orchestration-workflow/input.md
 ---
 
 # Weather Transformer Skill
@@ -13,13 +13,13 @@ Apply mathematical transformations to a temperature value and write results to o
 
 ## Instructions
 
-1. **Read Transformation Rules**: Use the Read tool to read `weather-orchestration/input.md` which contains the transformation instructions.
+1. **Read Transformation Rules**: Use the Read tool to read `orchestration-workflow/input.md` which contains the transformation instructions.
 
 2. **Apply Transformation**: Apply the transformation rule to the temperature value.
    - Example: If instruction says "add +10", add 10 to the temperature
    - Example: If instruction says "multiply by 2", multiply temperature by 2
 
-3. **Write Output**: Use the Write tool to save the transformed result to `weather-orchestration/output.md` with proper formatting.
+3. **Write Output**: Use the Write tool to save the transformed result to `orchestration-workflow/output.md` with proper formatting.
 
 ## Expected Input
 
@@ -30,7 +30,7 @@ Temperature: [X]°C
 
 ## Expected Output
 
-Write to `weather-orchestration/output.md` with format:
+Write to `orchestration-workflow/output.md` with format:
 ```markdown
 # Weather Transformation Result
 
@@ -38,7 +38,7 @@ Write to `weather-orchestration/output.md` with format:
 [X]°C
 
 ## Transformation Applied
-[description from weather-orchestration/input.md]
+[description from orchestration-workflow/input.md]
 
 ## Final Result
 [Y]°C
@@ -49,6 +49,6 @@ Write to `weather-orchestration/output.md` with format:
 
 ## Notes
 
-- Read the exact transformation from weather-orchestration/input.md - don't assume
+- Read the exact transformation from orchestration-workflow/input.md - don't assume
 - Show your work: include original value, transformation, and result
-- Ensure weather-orchestration/output.md is properly formatted and readable
+- Ensure orchestration-workflow/output.md is properly formatted and readable

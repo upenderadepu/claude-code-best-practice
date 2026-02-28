@@ -13,9 +13,9 @@ A demonstration of the **Command → Agent → Skills** architecture pattern:
 - `/weather-orchestrator` command (`.claude/commands/weather-orchestrator.md`): Entry point that invokes the weather agent
 - `weather` agent (`.claude/agents/weather.md`): Executes workflow using preloaded skills
 - `weather-fetcher` skill (`.claude/skills/weather-fetcher/SKILL.md`): Instructions for fetching temperature from wttr.in API
-- `weather-transformer` skill (`.claude/skills/weather-transformer/SKILL.md`): Instructions for applying transformation rules from `weather-orchestration/input.md`, writes results to `weather-orchestration/output.md`
+- `weather-transformer` skill (`.claude/skills/weather-transformer/SKILL.md`): Instructions for applying transformation rules from `orchestration-workflow/input.md`, writes results to `orchestration-workflow/output.md`
 
-The agent has skills preloaded via the `skills` field, providing domain knowledge for sequential execution. See `weather-orchestration/weather-orchestration-architecture.md` for the complete flow diagram.
+The agent has skills preloaded via the `skills` field, providing domain knowledge for sequential execution. See `orchestration-workflow/orchestration-workflow.md` for the complete flow diagram.
 
 ### Skill Definition Structure
 Skills in `.claude/skills/<name>/SKILL.md` use YAML frontmatter:
@@ -106,7 +106,7 @@ From experience with this repository:
 ## Documentation
 
 - `docs/AGENTS.md`: Subagent orchestration troubleshooting
-- `weather-orchestration/weather-orchestration-architecture.md`: Weather system flow diagram
+- `orchestration-workflow/orchestration-workflow.md`: Weather system flow diagram
 - `docs/COMPARISION.md`: Commands vs Agents vs Skills invocation patterns
 
 ## Reports

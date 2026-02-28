@@ -1,6 +1,6 @@
-# Weather Karachi System Flow
+# Orchestration Workflow
 
-This document describes the complete flow of the weather data fetching and transformation system.
+This document describes the **Command → Agent → Skills** orchestration workflow, demonstrated through a weather data fetching and transformation system.
 
 <table width="100%">
 <tr>
@@ -53,7 +53,7 @@ The weather system demonstrates the **Command → Agent → Skills** architectur
               │                               │
               ▼                               ▼
 ┌─────────────────────────┐     ┌─────────────────────────┐
-│  wttr.in API            │     │  weather-orchestration/ │
+│  wttr.in API            │     │  orchestration-workflow/ │
 │  Fetch Temperature      │     │  Read Transform Rules   │
 │  for Karachi            │     └─────────────────────────┘
 └─────────────────────────┘                   │
@@ -65,7 +65,7 @@ The weather system demonstrates the **Command → Agent → Skills** architectur
                                               │
                                               ▼
                                     ┌─────────────────────────┐
-                                    │  weather-orchestration/output.md       │
+                                    │  orchestration-workflow/output.md       │
                                     │  Write Results          │
                                     └─────────────────────────┘
                                               │
@@ -109,17 +109,17 @@ The agent has skills preloaded into its context at startup. It follows the instr
 #### `weather-transformer` (Skill)
 - **Location**: `.claude/skills/weather-transformer/SKILL.md`
 - **Purpose**: Instructions for applying mathematical transformations
-- **Input Source**: `weather-orchestration/input.md` (transformation rules)
-- **Output Destination**: `weather-orchestration/output.md` (formatted results)
+- **Input Source**: `orchestration-workflow/input.md` (transformation rules)
+- **Output Destination**: `orchestration-workflow/output.md` (formatted results)
 
 ### 4. Data Files
 
-#### `weather-orchestration/input.md`
+#### `orchestration-workflow/input.md`
 - **Purpose**: Stores transformation rules
 - **Format**: Natural language instructions (e.g., "add +10 in the result")
 - **Access**: Read by weather agent following weather-transformer skill
 
-#### `weather-orchestration/output.md`
+#### `orchestration-workflow/output.md`
 - **Purpose**: Stores formatted transformation results
 - **Format**: Structured markdown with sections:
   - Original Temperature
@@ -135,9 +135,9 @@ The agent has skills preloaded into its context at startup. It follows the instr
 4. **Skill Execution** (within agent context):
    - **Step 1**: Agent follows `weather-fetcher` skill instructions to fetch temperature from wttr.in
    - **Step 2**: Agent follows `weather-transformer` skill instructions to:
-     - Read transformation rules from `weather-orchestration/input.md`
+     - Read transformation rules from `orchestration-workflow/input.md`
      - Apply rules to the fetched temperature
-     - Write formatted results to `weather-orchestration/output.md`
+     - Write formatted results to `orchestration-workflow/output.md`
 5. **Result Display**: Summary shown to user with:
    - Temperature unit requested
    - Original temperature
@@ -157,9 +157,9 @@ Input: /weather-orchestrator
 │  ├─ Step 1 (weather-fetcher skill):
 │  │  └─ Fetches from wttr.in → 26°C
 │  ├─ Step 2 (weather-transformer skill):
-│  │  ├─ Reads: weather-orchestration/input.md ("add +10")
+│  │  ├─ Reads: orchestration-workflow/input.md ("add +10")
 │  │  ├─ Calculates: 26 + 10 = 36°C
-│  │  └─ Writes: weather-orchestration/output.md
+│  │  └─ Writes: orchestration-workflow/output.md
 │  └─ Returns: Complete report
 └─ Output:
    ├─ Unit: Celsius

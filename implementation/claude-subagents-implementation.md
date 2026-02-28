@@ -27,8 +27,8 @@ name: weather
 description: Use this agent PROACTIVELY when you need to fetch and transform
   weather data for Karachi, Pakistan. This agent fetches real-time temperature
   from wttr.in API and applies transformation rules from
-  weather-orchestration/input.md, writing results to
-  weather-orchestration/output.md.
+  orchestration-workflow/input.md, writing results to
+  orchestration-workflow/output.md.
 tools: WebFetch, Read, Write
 model: sonnet
 color: green
