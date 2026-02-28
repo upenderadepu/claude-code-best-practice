@@ -1,9 +1,10 @@
 # claude-code-best-practice
 practice makes claude perfect
 
-![Last Updated](https://img.shields.io/badge/Last_Updated-Feb_28%2C_2026_07%3A59_PM_PKT-white?style=flat&labelColor=555) <a href="https://github.com/shanraisshan/claude-code-best-practice/stargazers"><img src="https://img.shields.io/github/stars/shanraisshan/claude-code-best-practice?style=social" alt="GitHub Stars"></a><br>
-[![Best Practice](!/tags/best-practice.svg)](https://github.com/shanraisshan/claude-code-best-practice#my-experience) *Click on this badge to show the latest best practice*<br>
-[![Implemented](!/tags/implemented.svg)](https://github.com/shanraisshan/claude-code-best-practice/tree/main/.claude/hooks) *Click on this badge to show implementation in this repo*<br>
+![Last Updated](https://img.shields.io/badge/Last_Updated-Feb_28%2C_2026_07%3A59_PM_PKT-white?style=flat&labelColor=555) <a href="https://github.com/shanraisshan/claude-code-best-practice/stargazers"><img src="https://img.shields.io/github/stars/shanraisshan/claude-code-best-practice?style=flat&label=%E2%98%85&labelColor=555&color=white" alt="GitHub Stars"></a>
+
+![Best Practice](!/tags/best-practice.svg) *Click on this badge to show the latest best practice*<br>
+![Implemented](!/tags/implemented.svg) *Click on this badge to show implementation in this repo*<br>
 [![Orchestration Workflow](!/tags/orchestration-workflow.svg)](https://github.com/shanraisshan/claude-code-best-practice#orchestration-workflow) *Click on this badge to see the Command → Agent → Skills orchestration workflow*
 
 <p align="center">
