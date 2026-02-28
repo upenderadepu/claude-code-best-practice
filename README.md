@@ -1,9 +1,10 @@
 # claude-code-best-practice
 practice makes claude perfect
 
-![Last Updated](https://img.shields.io/badge/Last_Updated-Feb_26%2C_2026_10%3A45_AM_PKT-white?style=flat&labelColor=555) <a href="https://github.com/shanraisshan/claude-code-best-practice/stargazers"><img src="https://img.shields.io/github/stars/shanraisshan/claude-code-best-practice?style=social" alt="GitHub Stars"></a><br>
-[![Best Practice](https://img.shields.io/badge/Best_Practice-e3342f?style=flat)](https://github.com/shanraisshan/claude-code-best-practice#my-experience) *Click on this badge to show the latest best practice*<br>
-[![Implemented](https://img.shields.io/badge/Implemented-2ea44f?style=flat)](https://github.com/shanraisshan/claude-code-best-practice/tree/main/.claude/hooks) *Click on this badge to show implementation in this repo*
+![Last Updated](https://img.shields.io/badge/Last_Updated-Feb_28%2C_2026_07%3A59_PM_PKT-white?style=flat&labelColor=555) <a href="https://github.com/shanraisshan/claude-code-best-practice/stargazers"><img src="https://img.shields.io/github/stars/shanraisshan/claude-code-best-practice?style=social" alt="GitHub Stars"></a><br>
+[![Best Practice](!/tags/best-practice.svg)](https://github.com/shanraisshan/claude-code-best-practice#my-experience) *Click on this badge to show the latest best practice*<br>
+[![Implemented](!/tags/implemented.svg)](https://github.com/shanraisshan/claude-code-best-practice/tree/main/.claude/hooks) *Click on this badge to show implementation in this repo*<br>
+[![Orchestration Workflow](!/tags/orchestration-workflow.svg)](https://github.com/shanraisshan/claude-code-best-practice#orchestration-workflow) *Click on this badge to see the Command → Agent → Skills orchestration workflow*
 
 <p align="center">
   <img src="!/claude-jumping.svg" alt="Claude Code mascot jumping" width="120" height="100">
@@ -23,7 +24,7 @@ practice makes claude perfect
 |---------|----------|-------------|
 | [**Skills**](https://code.claude.com/docs/en/skills) | `.claude/skills/<name>/SKILL.md` | Reusable knowledge, workflows, and slash commands — load on-demand or invoke with `/skill-name` |
 | [**Commands**](https://code.claude.com/docs/en/skills) | `.claude/commands/<name>.md` | Entry-point prompts for workflows — invoke with `/command-name` |
-| [**Sub-Agents**](https://code.claude.com/docs/en/sub-agents) | `.claude/agents/<name>.md` | [![Best Practice](https://img.shields.io/badge/Best_Practice-e3342f?style=flat)](best-practice/claude-subagents.md) Custom agents with their own name, color, tools, permissions, and model — usable as main agent or isolated subagents via the Task tool |
+| [**Sub-Agents**](https://code.claude.com/docs/en/sub-agents) | `.claude/agents/<name>.md` | [![Best Practice](!/tags/best-practice.svg)](best-practice/claude-subagents.md) [![Implemented](!/tags/implemented.svg)](implementation/claude-subagents-implementation.md) Custom agents with their own name, color, tools, permissions, and model — usable as main agent or isolated subagents via the Task tool |
 | [**Memory**](https://code.claude.com/docs/en/memory) | `CLAUDE.md` | Persistent context via CLAUDE.md files and `@path` imports that Claude sees every session |
 | [**Rules**](https://code.claude.com/docs/en/memory#modular-rules-with-clauderules) | `.claude/rules/*.md` | Modular topic-specific instructions with optional path-scoping via frontmatter |
 | [**Hooks**](https://code.claude.com/docs/en/hooks) | `.claude/hooks/` | Deterministic scripts that run outside the agentic loop on specific events |
@@ -108,7 +109,11 @@ practice makes claude perfect
 - [Claude Code Tasks - inspired by beats](https://www.reddit.com/r/ClaudeAI/comments/1qkjznp/anthropic_replaced_claude_codes_old_todos_with/) [Inspiration](https://github.com/steveyegge/beads)
 - [Ralph Plugin](https://x.com/GeoffreyHuntley/status/2015031262692753449)
 
-## COMMAND + SKILL + SUBAGENT ARCHITECTURE
+<a id="orchestration-workflow"></a>
+
+## <img src="!/tags/orchestration-workflow-hd.svg" alt="Orchestration Workflow">
+
+Multi-step workflows using the **Command → Agent → Skills** architecture pattern.
 
 <p align="center">
   <img src="!/command-skill-agent-flow.svg" alt="Command Skill Agent Architecture Flow" width="600">

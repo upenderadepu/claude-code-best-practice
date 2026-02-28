@@ -1,6 +1,7 @@
-# Claude Code: Subagents Reference
+# Sub-agents Best Practice
 
-![Last Updated](https://img.shields.io/badge/Last_Updated-Feb%2028%2C%202026%203%3A22%20PM%20PKT-white?style=flat&labelColor=555)
+![Last Updated](https://img.shields.io/badge/Last_Updated-Feb%2028%2C%202026%203%3A22%20PM%20PKT-white?style=flat&labelColor=555)<br>
+[![Implemented](https://img.shields.io/badge/Implemented-2ea44f?style=flat)](../implementation/claude-subagents-implementation.md)
 
 Complete reference for Claude Code subagents — built-in agent types, custom agent definitions, and frontmatter fields.
 
