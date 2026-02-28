@@ -150,6 +150,8 @@ Built-in agent types available via `subagent_type` in the Task tool:
 | `general-purpose` | inherit | All | Complex multi-step tasks — the default agent type for research, code search, and autonomous work |
 | `Explore` | haiku | Read-only (no Write, Edit) | Fast codebase search and exploration — optimized for finding files, searching code, and answering codebase questions |
 | `Plan` | inherit | Read-only (no Write, Edit) | Pre-planning research in plan mode — explores the codebase and designs implementation approaches before writing code |
+| `claude-code-guide` | inherit | Glob, Grep, Read, WebFetch, WebSearch | Answers questions about Claude Code features, hooks, slash commands, MCP servers, settings, IDE integrations, and keyboard shortcuts |
+| `statusline-setup` | inherit | Read, Edit | Configures the user's Claude Code status line setting |
 
 ### Agents in This Repository
 
@@ -157,9 +159,9 @@ Custom agents defined in `.claude/agents/` for this project:
 
 | Agent | Model | Color | Tools | Skills | Memory |
 |-------|-------|-------|-------|--------|--------|
-| `presentation-curator` | sonnet | magenta | Read, Write, Edit, Grep, Glob | presentation/vibe-to-agentic-framework, presentation/presentation-structure, presentation/presentation-styling | — |
-| `weather` | sonnet | green | WebFetch, Read, Write | weather-fetcher, weather-transformer | project |
-| `workflow-changelog-claude-subagents-agent` | opus | blue | All (inherited) | — | — |
+| [`presentation-curator`](../.claude/agents/presentation-curator.md) | sonnet | magenta | Read, Write, Edit, Grep, Glob | presentation/vibe-to-agentic-framework, presentation/presentation-structure, presentation/presentation-styling | — |
+| [`weather`](../.claude/agents/weather.md) | sonnet | green | WebFetch, Read, Write | weather-fetcher, weather-transformer | project |
+| [`workflow-changelog-claude-subagents-agent`](../.claude/agents/workflows/reports/workflow-changelog-claude-subagents-agent.md) | opus | blue | All (inherited) | — | — |
 
 ---
 

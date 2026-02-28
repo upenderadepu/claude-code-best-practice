@@ -31,8 +31,9 @@ Read ALL of the following:
 
 | File | What to check |
 |------|---------------|
-| `reports/claude-subagents.md` | Frontmatter Fields table, Memory Scopes table, Invocation section, Examples (minimal + full-featured), Scope and Priority table, Claude Agents section, Sources list |
+| `best-practice/claude-subagents.md` | Frontmatter Fields table, Memory Scopes table, Invocation section, Examples (minimal + full-featured), Scope and Priority table, Claude Agents section, Sources list |
 | `CLAUDE.md` | Subagent Definition Structure section, Subagent Orchestration section, any agent-related patterns |
+| `.claude/agents/**/*.md` | Use Glob to discover ALL agent definition files (including nested directories like `.claude/agents/workflows/`). For each agent file, read its YAML frontmatter to extract: name, model, color, tools, disallowedTools, skills, memory. Compare the full list against the "Agents in This Repository" table in the report. |
 
 ---
 
@@ -77,6 +78,21 @@ Verify both examples against current field set:
 ### CLAUDE.md Consistency
 Verify CLAUDE.md's agent-related sections are consistent with the report. Check the Subagent Definition Structure section lists the same fields as the report.
 
+### Built-in Agent Completeness
+Compare the "Official Claude Agents" table against the built-in agent types discovered from official docs and changelog. Check for:
+- Missing built-in agents not listed in the table
+- Removed/deprecated agents still listed
+- Incorrect model, tools, or description for existing entries
+- New built-in agents introduced in recent versions
+
+### Repository Agent Completeness
+Compare the "Agents in This Repository" table against the actual agent files discovered from `.claude/agents/**/*.md`. For each agent file found:
+- Verify it appears in the table
+- Verify its model, color, tools, skills, and memory columns match the file's frontmatter
+- Flag any agents in the table that no longer have a corresponding file
+- Flag any agent files that are missing from the table
+- Verify each agent's clickable link in the table resolves to the correct file path
+
 ### Sources Accuracy
 Verify the Sources section links are still valid and point to the correct documentation pages.
 
@@ -95,8 +111,10 @@ Return your findings as a structured report with these sections:
 7. **Invocation Pattern Accuracy** — Syntax and method comparison
 8. **Scope & Priority Accuracy** — Table comparison results
 9. **Example Accuracy** — Per-example verification
-10. **CLAUDE.md Consistency** — Agent-related section accuracy
-11. **Sources Accuracy** — Link validity
+10. **Built-in Agent Completeness** — Missing, removed, or inaccurate built-in agent entries
+11. **Repository Agent Completeness** — Missing, extra, or inaccurate entries in "Agents in This Repository" table vs actual `.claude/agents/**/*.md` files
+12. **CLAUDE.md Consistency** — Agent-related section accuracy
+13. **Sources Accuracy** — Link validity
 
 Be thorough and specific. Include version numbers, file paths, and line references where possible.
 
@@ -111,6 +129,8 @@ Be thorough and specific. Include version numbers, file paths, and line referenc
 5. **Cross-reference field counts** — the report's field count must match official docs
 6. **Verify BOTH examples** — minimal must be minimal, full-featured must show all fields
 7. **Do NOT modify any files** — this is read-only research
+8. **Scan ALL agent files** — use Glob for `.claude/agents/**/*.md` to discover agents in nested directories, not just the top level
+9. **Cross-reference repo agents** — every `.md` file in `.claude/agents/` must appear in "Agents in This Repository" and vice versa
 
 ---
 
