@@ -1,4 +1,4 @@
-# Agents Frontmatter Report — Changelog History
+# Subagents Report — Changelog History
 
 ## Status Legend
 

@@ -1,8 +1,8 @@
-# Claude Code: Agents Frontmatter Reference
+# Claude Code: Subagents Reference
 
 ![Last Updated](https://img.shields.io/badge/Last_Updated-Feb%2028%2C%202026%203%3A22%20PM%20PKT-white?style=flat&labelColor=555)
 
-Quick-reference tables for defining subagents in `.claude/agents/*.md`.
+Complete reference for Claude Code subagents — built-in agent types, custom agent definitions, and frontmatter fields.
 
 <table width="100%">
 <tr>
@@ -136,6 +136,30 @@ When multiple subagents share the same name, the higher-priority location wins:
 | `.claude/agents/` | Current project | 2 |
 | `~/.claude/agents/` | All your projects | 3 |
 | Plugin's `agents/` directory | Where plugin is enabled | 4 (lowest) |
+
+---
+
+## Claude Agents
+
+### Official Claude Agents
+
+Built-in agent types available via `subagent_type` in the Task tool:
+
+| Agent | Model | Tools | Description |
+|-------|-------|-------|-------------|
+| `general-purpose` | inherit | All | Complex multi-step tasks — the default agent type for research, code search, and autonomous work |
+| `Explore` | haiku | Read-only (no Write, Edit) | Fast codebase search and exploration — optimized for finding files, searching code, and answering codebase questions |
+| `Plan` | inherit | Read-only (no Write, Edit) | Pre-planning research in plan mode — explores the codebase and designs implementation approaches before writing code |
+
+### Agents in This Repository
+
+Custom agents defined in `.claude/agents/` for this project:
+
+| Agent | Model | Color | Tools | Skills | Memory |
+|-------|-------|-------|-------|--------|--------|
+| `presentation-curator` | sonnet | magenta | Read, Write, Edit, Grep, Glob | presentation/vibe-to-agentic-framework, presentation/presentation-structure, presentation/presentation-styling | — |
+| `weather` | sonnet | green | WebFetch, Read, Write | weather-fetcher, weather-transformer | project |
+| `workflow-changelog-claude-subagents-agent` | opus | blue | All (inherited) | — | — |
 
 ---
 

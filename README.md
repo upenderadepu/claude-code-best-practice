@@ -1,7 +1,9 @@
 # claude-code-best-practice
 practice makes claude perfect
 
-![Last Updated](https://img.shields.io/badge/Last_Updated-Feb_26%2C_2026_10%3A45_AM_PKT-white?style=flat&labelColor=555) <a href="https://github.com/shanraisshan/claude-code-best-practice/stargazers"><img src="https://img.shields.io/github/stars/shanraisshan/claude-code-best-practice?style=social" alt="GitHub Stars"></a>
+![Last Updated](https://img.shields.io/badge/Last_Updated-Feb_26%2C_2026_10%3A45_AM_PKT-white?style=flat&labelColor=555) <a href="https://github.com/shanraisshan/claude-code-best-practice/stargazers"><img src="https://img.shields.io/github/stars/shanraisshan/claude-code-best-practice?style=social" alt="GitHub Stars"></a><br>
+[![Best Practice](https://img.shields.io/badge/Best_Practice-e3342f?style=flat)](https://github.com/shanraisshan/claude-code-best-practice#my-experience) *Clicking on this badge will show the latest best practices*<br>
+[![Implemented](https://img.shields.io/badge/Implemented-2ea44f?style=flat)](https://github.com/shanraisshan/claude-code-best-practice/tree/main/.claude/hooks) *Clicking on this badge will show their implementation and how to use*
 
 <p align="center">
   <img src="!/claude-jumping.svg" alt="Claude Code mascot jumping" width="120" height="100">
@@ -42,7 +44,7 @@ practice makes claude perfect
 |--------|-------------|
 | [Claude Code Commands Reference](reports/claude-commands.md) | Complete reference of all slash commands, keyboard shortcuts, and input modes |
 | [Claude Code Settings Reference](reports/claude-settings.md) | Comprehensive guide to all `settings.json` configuration options |
-| [Agents Frontmatter Reference](reports/claude-agents-frontmatter.md) | Complete reference of all agent (`.claude/agents/`) frontmatter fields |
+| [Subagents Reference](reports/claude-subagents.md) | Complete reference for Claude Code subagents — built-in agents, custom agents, and frontmatter fields |
 | [Commands Frontmatter Reference](reports/claude-commands-frontmatter.md) | Complete reference of all command (`.claude/commands/`) frontmatter fields |
 | [Skills Frontmatter Reference](reports/claude-skills-frontmatter.md) | Complete reference of all skill (`.claude/skills/`) frontmatter fields |
 
@@ -188,6 +190,6 @@ Research (Context7/DeepWiki) -> Debug (Playwright/Chrome) -> Document (Excalidra
 | [Usage, Rate Limits & Extra Usage](reports/claude-usage-and-rate-limits.md) | Usage commands (`/usage`, `/extra-usage`, `/cost`), rate limits, and pay-as-you-go overflow billing |
 | [Claude Code Commands Reference](reports/claude-commands.md) | Complete reference of all slash commands, keyboard shortcuts, and input modes |
 | [Claude Code Settings Reference](reports/claude-settings.md) | Comprehensive guide to all `settings.json` configuration options |
-| [Agents Frontmatter Reference](reports/claude-agents-frontmatter.md) | Complete reference of all agent (`.claude/agents/`) frontmatter fields |
+| [Subagents Reference](reports/claude-subagents.md) | Complete reference for Claude Code subagents — built-in agents, custom agents, and frontmatter fields |
 | [Commands Frontmatter Reference](reports/claude-commands-frontmatter.md) | Complete reference of all command (`.claude/commands/`) frontmatter fields |
 | [Skills Frontmatter Reference](reports/claude-skills-frontmatter.md) | Complete reference of all skill (`.claude/skills/`) frontmatter fields |

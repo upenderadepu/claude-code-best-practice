@@ -1,11 +1,11 @@
 ---
-description: Track Claude Code agents frontmatter changes and find what needs updating in the report
+description: Track Claude Code subagents report changes and find what needs updating
 argument-hint: [number of versions to check, default 10]
 ---
 
-# Workflow Changelog — Agents Frontmatter Report
+# Workflow Changelog — Subagents Report
 
-You are a coordinator for the claude-code-best-practice project. Your job is to launch two research agents in parallel, wait for their results, merge findings, and present a unified report about drift in the **Agents Frontmatter Reference** report (`reports/claude-agents-frontmatter.md`).
+You are a coordinator for the claude-code-best-practice project. Your job is to launch two research agents in parallel, wait for their results, merge findings, and present a unified report about drift in the **Subagents Reference** report (`reports/claude-subagents.md`).
 
 **Versions to check:** `$ARGUMENTS` (default: 10 if empty or not a number)
 
@@ -17,18 +17,18 @@ This is a **read-then-report** workflow. Launch agents, merge results, and produ
 
 **Immediately** spawn both agents using the Task tool **in the same message** (parallel launch):
 
-### Agent 1: workflow-changelog-claude-agents-frontmatter-agent
+### Agent 1: workflow-changelog-claude-subagents-agent
 
-Spawn using `subagent_type: "workflow-changelog-claude-agents-frontmatter-agent"`. Give it this prompt:
+Spawn using `subagent_type: "workflow-changelog-claude-subagents-agent"`. Give it this prompt:
 
-> Research the claude-code-best-practice project for agents frontmatter report drift. Check the last $ARGUMENTS versions (default: 10).
+> Research the claude-code-best-practice project for subagents report drift. Check the last $ARGUMENTS versions (default: 10).
 >
 > Fetch these 3 external sources:
 > 1. Sub-agents Reference: https://code.claude.com/docs/en/sub-agents
 > 2. CLI Reference: https://code.claude.com/docs/en/cli-reference
 > 3. Changelog: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 >
-> Then read the local report file (`reports/claude-agents-frontmatter.md`) and the CLAUDE.md file. Analyze differences between what the official docs say about agent frontmatter fields and what our report documents. Return a structured findings report covering missing fields, changed field types, new field additions, deprecated fields, memory scope changes, invocation pattern changes, scope/priority changes, and example accuracy.
+> Then read the local report file (`reports/claude-subagents.md`) and the CLAUDE.md file. Analyze differences between what the official docs say about agent frontmatter fields and what our report documents. Return a structured findings report covering missing fields, changed field types, new field additions, deprecated fields, memory scope changes, invocation pattern changes, scope/priority changes, and example accuracy.
 
 ### Agent 2: claude-code-guide
 
@@ -52,13 +52,13 @@ Both agents run independently and will return their findings.
 
 ## Phase 0.5: Read Verification Checklist
 
-**While agents are running**, read `changelog/reports/claude-agents-frontmatter/verification-checklist.md`. This file contains accumulated verification rules — each rule specifies what to check, at what depth, and against which source. Every rule MUST be executed during Phase 2. The checklist is the project's regression test suite for drift detection.
+**While agents are running**, read `changelog/reports/claude-subagents/verification-checklist.md`. This file contains accumulated verification rules — each rule specifies what to check, at what depth, and against which source. Every rule MUST be executed during Phase 2. The checklist is the project's regression test suite for drift detection.
 
 ---
 
 ## Phase 1: Read Previous Changelog Entries
 
-**Before merging findings**, read the file `changelog/reports/claude-agents-frontmatter/changelog.md` to get the last 25 changelog entries. Each entry is separated by `---`. Parse the priority actions from those previous entries so you can compare them against the current findings. This lets you identify:
+**Before merging findings**, read the file `changelog/reports/claude-subagents/changelog.md` to get the last 25 changelog entries. Each entry is separated by `---`. Parse the priority actions from those previous entries so you can compare them against the current findings. This lets you identify:
 - **Recurring items** — issues that appeared before and are still unresolved
 - **Newly resolved items** — issues from previous runs that are now fixed
 - **New items** — issues that appear for the first time in this run
@@ -68,12 +68,12 @@ Both agents run independently and will return their findings.
 ## Phase 2: Merge Findings & Generate Report
 
 **Wait for both agents to complete.** Once you have:
-- **workflow-changelog-claude-agents-frontmatter-agent findings** — detailed report analysis with local file reads, external doc fetches, and drift detection
+- **workflow-changelog-claude-subagents-agent findings** — detailed report analysis with local file reads, external doc fetches, and drift detection
 - **claude-code-guide findings** — independent research on latest Claude Code agents features and frontmatter changes
 
 Cross-reference the two. The dedicated agent provides report-specific drift analysis, while the claude-code-guide agent may surface things it missed (e.g. very recent changes, undocumented features, or context from web searches). Flag any contradictions between the two for the user to resolve.
 
-**Execute the verification checklist:** For every rule in `changelog/reports/claude-agents-frontmatter/verification-checklist.md`, perform the check at the specified depth using the agent findings as source data. Include a **Verification Log** section in the report showing each rule's result:
+**Execute the verification checklist:** For every rule in `changelog/reports/claude-subagents/verification-checklist.md`, perform the check at the specified depth using the agent findings as source data. Include a **Verification Log** section in the report showing each rule's result:
 
 ```
 Verification Log:
@@ -83,7 +83,7 @@ Rule # | Category              | Depth         | Result | Notes
 ...
 ```
 
-**Update the checklist if needed:** If a finding reveals a new type of drift that no existing checklist rule covers (or covers at insufficient depth), append a new rule to `changelog/reports/claude-agents-frontmatter/verification-checklist.md`. The rule must include: category, what to check, depth level, what source to compare against, date added, and the origin (what error prompted this rule). Do NOT add rules for one-off issues that won't recur.
+**Update the checklist if needed:** If a finding reveals a new type of drift that no existing checklist rule covers (or covers at insufficient depth), append a new rule to `changelog/reports/claude-subagents/verification-checklist.md`. The rule must include: category, what to check, depth level, what source to compare against, date added, and the origin (what error prompted this rule). Do NOT add rules for one-off issues that won't recur.
 
 Also compare the current findings against the previous changelog entries (from Phase 1). For each priority action, mark it as:
 - `NEW` — first time this issue appears
@@ -124,7 +124,7 @@ Also include a **Resolved Since Last Run** section listing any items from the pr
 
 **This phase is MANDATORY — always execute it before presenting the report to the user.**
 
-Read the existing `changelog/reports/claude-agents-frontmatter/changelog.md` file, then **append** (do NOT overwrite) a new entry at the end. The entry format must be exactly:
+Read the existing `changelog/reports/claude-subagents/changelog.md` file, then **append** (do NOT overwrite) a new entry at the end. The entry format must be exactly:
 
 ```markdown
 ---
@@ -147,7 +147,7 @@ The `(reason)` is mandatory and must briefly explain what was done or why.
 **Rules for appending:**
 - Always append — never overwrite or replace previous entries
 - The date and time is when the command is executed in Pakistan Standard Time (PKT, UTC+5); get it by running `TZ=Asia/Karachi date "+%Y-%m-%d %I:%M %p PKT"`. The version comes from agent findings
-- If `changelog/reports/claude-agents-frontmatter/changelog.md` doesn't exist or is empty, create it with the Status Legend table (see top of file) then the first entry
+- If `changelog/reports/claude-subagents/changelog.md` doesn't exist or is empty, create it with the Status Legend table (see top of file) then the first entry
 - Each entry is separated by `---`
 - **Only include items with HIGH, MEDIUM, or LOW priority** — omit NONE priority items (things that need no action)
 
@@ -157,7 +157,7 @@ The `(reason)` is mandatory and must briefly explain what was done or why.
 
 **This phase is MANDATORY — always execute it immediately after Phase 2.5, before presenting the report.**
 
-Update the "Last Updated" badge at the top of `reports/claude-agents-frontmatter.md`. Run `TZ=Asia/Karachi date "+%b %d, %Y %-I:%M %p PKT"` to get the time, URL-encode it (spaces to `%20`, commas to `%2C`), and replace the date portion in the badge. Also update the Claude Code version in the badge if it has changed.
+Update the "Last Updated" badge at the top of `reports/claude-subagents.md`. Run `TZ=Asia/Karachi date "+%b %d, %Y %-I:%M %p PKT"` to get the time, URL-encode it (spaces to `%20`, commas to `%2C`), and replace the date portion in the badge. Also update the Claude Code version in the badge if it has changed.
 
 **Do NOT log badge updates as action items in the changelog or report.** Badge syncing is a routine part of every run, not a finding.
 
